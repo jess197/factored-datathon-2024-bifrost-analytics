@@ -1,0 +1,77 @@
+{
+	"name": "pl_gkg_events_extract",
+	"properties": {
+		"activities": [
+			{
+				"name": "gkg_events_transform",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings",
+							"compressionProperties": {
+								"type": "ZipDeflateReadSettings"
+							}
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_landing_csv_zip",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema": "events/export",
+							"name": "20240814.export.csv.zip"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_bronze_parquet",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema": "bronze/events/export",
+							"name": "20240814.parquet"
+						}
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-08-16T03:13:34Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
