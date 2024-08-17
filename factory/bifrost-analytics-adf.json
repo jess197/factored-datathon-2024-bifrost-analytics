@@ -1,9 +1,0 @@
-{
-	"name": "bifrost-analytics-adf",
-	"location": "eastus",
-	"identity": {
-		"type": "SystemAssigned",
-		"principalId": "836911b2-0f86-4322-87bc-33a446ebc7bd",
-		"tenantId": "a7f8597b-b90c-4370-a400-1d0d0e043c97"
-	}
-}
