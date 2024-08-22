@@ -1,11 +1,17 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC # Import Libs
+# MAGIC
+
+# COMMAND ----------
+
 import pyspark.sql.functions as fn 
 from delta.tables import DeltaTable
 
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC select * from silver.events_export
+# MAGIC # Silver
 
 # COMMAND ----------
 
@@ -32,8 +38,8 @@ gdelt_silver_treated = (
 
 # COMMAND ----------
 
-# MAGIC %md
-# MAGIC display(gdelt_silver_treated)
+# MAGIC %md 
+# MAGIC # Gold
 
 # COMMAND ----------
 
