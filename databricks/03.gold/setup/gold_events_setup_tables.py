@@ -1,4 +1,9 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC ## CREATE TABLE
+
+# COMMAND ----------
+
 # MAGIC %sql
 # MAGIC CREATE OR REPLACE TABLE gold.gdelt_events_and_dates (
 # MAGIC   GlobalEventID INTEGER COMMENT "Globally unique identifier assigned to each event record that uniquely
@@ -105,3 +110,19 @@
 # MAGIC )
 # MAGIC USING DELTA 
 # MAGIC LOCATION '/mnt/prd/gold/gdelt_events_data_management/'
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TABLE gold.gdelt_events_news_detailed (
+# MAGIC   GlobalEventID INTEGER COMMENT "Globally unique identifier assigned to each event record that uniquely
+# MAGIC   identifies it in the master dataset",
+# MAGIC   SOURCEURL STRING COMMENT "This field is only present in the daily event stream files beginning April
+# MAGIC   1, 2013 and lists the URL of the news article the event was found in",
+# MAGIC   SOURCEBASEURL STRING COMMENT "This field is the base URL, the site, that the news came from",
+# MAGIC   TITLE STRING COMMENT "This field have the title of the news",
+# MAGIC   NEWS_BODY STRING COMMENT "This field contains the news body", 
+# MAGIC   SUCCESSFUL BOOLEAN COMMENT "This field indicates if the news was successfully imported"
+# MAGIC )
+# MAGIC USING DELTA 
+# MAGIC LOCATION '/mnt/prd/gold/gdelt_events_news_detailed/'

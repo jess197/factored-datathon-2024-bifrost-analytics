@@ -1,6 +1,17 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC #Import Libs
+# MAGIC
+
+# COMMAND ----------
+
 import pyspark.sql.functions as fn 
 from delta.tables import DeltaTable
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC # Silver
 
 # COMMAND ----------
 
@@ -32,6 +43,11 @@ gdelt_geography_silver = (
     )
 )
 
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC # Gold
 
 # COMMAND ----------
 

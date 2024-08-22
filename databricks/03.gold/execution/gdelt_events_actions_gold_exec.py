@@ -1,6 +1,16 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC #Import Libs
+
+# COMMAND ----------
+
 import pyspark.sql.functions as fn 
 from delta.tables import DeltaTable
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC #Silver
 
 # COMMAND ----------
 
@@ -28,6 +38,11 @@ gdelt_actions_silver_treated = (
     gdelt_actions_silver
     .withColumn("IsRootEvent", fn.col("IsRootEvent").cast("boolean"))
 )
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC # Gold
 
 # COMMAND ----------
 

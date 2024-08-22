@@ -1,6 +1,16 @@
 # Databricks notebook source
+# MAGIC %md
+# MAGIC # Import Libs
+
+# COMMAND ----------
+
 import pyspark.sql.functions as fn 
 from delta.tables import DeltaTable
+
+# COMMAND ----------
+
+# MAGIC %md 
+# MAGIC #Silver
 
 # COMMAND ----------
 
@@ -48,6 +58,11 @@ gdelt_actors_silver_treated = (
     .withColumn("Actor1EthnicCode", fn.upper("Actor1EthnicCode"))
     .withColumn("Actor2EthnicCode", fn.upper("Actor2EthnicCode"))
 )
+
+# COMMAND ----------
+
+# MAGIC %md 
+# MAGIC #Gold
 
 # COMMAND ----------
 
