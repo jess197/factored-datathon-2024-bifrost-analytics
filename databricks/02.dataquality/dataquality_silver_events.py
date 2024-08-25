@@ -38,7 +38,7 @@ from soda.scan import Scan
 
 from soda.scan import Scan
 # Create a Spark DataFrame, or use the Spark API to read data and create a DataFrame
-df_silver_events_dq = spark.table("delta.`/mnt/prd/silver/events_export`")
+df_silver_events_dq = spark.table("silver.events_export")
 
 # Create a view that SodaCL uses as a dataset
 df_silver_events_dq.createOrReplaceTempView("gdelt_events_silver")

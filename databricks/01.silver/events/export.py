@@ -4,91 +4,39 @@
 
 # COMMAND ----------
 
-from pyspark.sql.functions import col
+from pyspark.sql.functions import col, current_timestamp, sha2, concat_ws
 from pyspark.sql.types import *
+import time
 
 
 # COMMAND ----------
 
-df_schema = StructType([
-    StructField("GlobalEventID",LongType(),True),
-    StructField("Day",LongType(),True),
-    StructField("MonthYear",LongType(),True),
-    StructField("Year",LongType(),True),
-    StructField("FractionDate",DoubleType(),True),
-    StructField("Actor1Code",StringType(),True),
-    StructField("Actor1Name",StringType(),True),
-    StructField("Actor1CountryCode",StringType(),True),
-    StructField("Actor1KnownGroupCode",StringType(),True),
-    StructField("Actor1EthnicCode",StringType(),True),
-    StructField("Actor1Religion1Code",StringType(),True),
-    StructField("Actor1Religion2Code",StringType(),True),
-    StructField("Actor1Type1Code",StringType(),True),
-    StructField("Actor1Type2Code",StringType(),True),
-    StructField("Actor1Type3Code",StringType(),True),
-    StructField("Actor2Code",StringType(),True),
-    StructField("Actor2Name",StringType(),True),
-    StructField("Actor2CountryCode",StringType(),True),
-    StructField("Actor2KnownGroupCode",StringType(),True),
-    StructField("Actor2EthnicCode",StringType(),True),
-    StructField("Actor2Religion1Code",StringType(),True),
-    StructField("Actor2Religion2Code",StringType(),True),
-    StructField("Actor2Type1Code",StringType(),True),
-    StructField("Actor2Type2Code",StringType(),True),
-    StructField("Actor2Type3Code",StringType(),True),
-    StructField("IsRootEvent",LongType(),True),
-    StructField("EventCode",StringType(),True),
-    StructField("EventBaseCode",StringType(),True),
-    StructField("EventRootCode",StringType(),True),
-    StructField("QuadClass",LongType(),True),
-    StructField("GoldsteinScale",DoubleType(),True),
-    StructField("NumMentions",LongType(),True),
-    StructField("NumSources",LongType(),True),
-    StructField("NumArticles",LongType(),True),
-    StructField("AvgTone",DoubleType(),True),
-    StructField("Actor1Geo_Type",LongType(),True),
-    StructField("Actor1Geo_Fullname",StringType(),True),
-    StructField("Actor1Geo_CountryCode",StringType(),True),
-    StructField("Actor1Geo_ADM1Code",StringType(),True),
-    StructField("Actor1Geo_Lat",DoubleType(),True),
-    StructField("Actor1Geo_Long",DoubleType(),True),
-    StructField("Actor1Geo_FeatureID",StringType(),True),
-    StructField("Actor2Geo_Type",LongType(),True),
-    StructField("Actor2Geo_Fullname",StringType(),True),
-    StructField("Actor2Geo_CountryCode",StringType(),True),
-    StructField("Actor2Geo_ADM1Code",StringType(),True),
-    StructField("Actor2Geo_Lat",DoubleType(),True),
-    StructField("Actor2Geo_Long",DoubleType(),True),
-    StructField("Actor2Geo_FeatureID",StringType(),True),
-    StructField("ActionGeo_Type",LongType(),True),
-    StructField("ActionGeo_Fullname",StringType(),True),
-    StructField("ActionGeo_CountryCode",StringType(),True),
-    StructField("ActionGeo_ADM1Code",StringType(),True),
-    StructField("ActionGeo_Lat",DoubleType(),True),
-    StructField("ActionGeo_Long",DoubleType(),True),
-    StructField("ActionGeo_FeatureID",StringType(),True),
-    StructField("DATEADDED",LongType(),True),
-    StructField("SOURCEURL",StringType(),True)
-])
+extracted = dbutils.fs.ls('/mnt/prd/bronze/events/export/')
+max_date = max([time.strftime("%Y%m%d", time.localtime(f[3] / 1000)) for f in extracted if f[1].endswith('parquet')])
+list_base = [f[1] 
+             for f in extracted if f[1].endswith('parquet')
+             and time.strftime("%Y%m%d", time.localtime(f[3] / 1000)) == max_date]
+
 
 # COMMAND ----------
+
+print(list_base)
+
+# COMMAND ----------
+
+read_list = ['/mnt/prd/bronze/events/export/'+f for f in list_base]
 
 df = (spark.read
-      .schema(df_schema)
       .format('parquet')
-      #.option('mergeSchema', 'true')
       .option('header', 'true')
       .option("ignoreCorruptFiles", "true")
       .option("badRecordsPath", "/mnt/prd/bronze/events/export/corrupted")
       .option("columnNameOfCorruptRecord", "_corrupt_record")
-      .load('/mnt/prd/bronze/events/export/*.parquet')
+      .load(read_list)
       )
 
 
 # COMMAND ----------
-
-from pyspark.sql.functions import col
-from pyspark.sql.types import *
 
 df = df.withColumn("GlobalEventID", col('GlobalEventID').cast(LongType()))
 df = df.withColumn("Day", col('Day').cast(LongType()))
@@ -155,6 +103,26 @@ df = df.withColumn("SOURCEURL", col('SOURCEURL').cast(StringType()))
 
 # COMMAND ----------
 
-df.write.mode('overwrite').format('delta') \
-    .option('path', '/mnt/prd/silver/events_export') \
-    .saveAsTable('silver.events_export')
+df = df.withColumn("_hashed_rows", sha2(concat_ws("||", *df.columns), 256))
+df = df.withColumn('_updated_at', current_timestamp())
+
+# COMMAND ----------
+
+df = df.dropDuplicates(['GlobalEventID'])
+
+# COMMAND ----------
+
+from delta.tables import *
+
+delta_df = DeltaTable.forName(spark, "silver.events_export")
+
+
+delta_df.alias('old') \
+  .merge(
+    df.alias('new'),
+    'new.GlobalEventID = old.GlobalEventID'
+  ) \
+  .whenMatchedUpdateAll(condition = 'old._hashed_rows <> new._hashed_rows') \
+  .whenNotMatchedInsertAll() \
+  .execute()
+

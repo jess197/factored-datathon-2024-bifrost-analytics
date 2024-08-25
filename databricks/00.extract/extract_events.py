@@ -1,5 +1,8 @@
 # Databricks notebook source
-from os import listdir, getenv
+# MAGIC %pip install beautifulsoup4 requests
+
+# COMMAND ----------
+
 from urllib.request import urlopen
 from bs4  import BeautifulSoup
 import requests
@@ -8,8 +11,12 @@ import io
 
 # COMMAND ----------
 
-df = spark.sql('select max(Day) from silver.events_export')
-extraction_start_date = df.collect()[0][0]
+extracted = dbutils.fs.ls('/mnt/prd/bronze/events/export/')
+list_base = [f[1].split('.')[0] for f in extracted if f[1].endswith('parquet')]
+
+# COMMAND ----------
+
+extraction_start_date = int(max(list_base))
 
 # COMMAND ----------
 
@@ -34,7 +41,7 @@ text_soup = BeautifulSoup(urlopen(url).read()) #read in
 lines = text_soup.find_all('a', href=True)
 
 ## Filter data
-extract_list = [l['href'] for l in lines if 'CSV' in l['href'] and (int(l['href'].split('.')[0]) > extraction_start_date )]
+extract_list = [l['href'] for l in lines if 'CSV' in l['href'] and (int(l['href'].split('.')[0]) >= extraction_start_date )]
 
 # COMMAND ----------
 
