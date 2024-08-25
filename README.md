@@ -56,7 +56,9 @@ Goal: Provide early warning insights and predictions to aid in risk mitigation f
 <p> The approach that Bifrost Analytics used to provide insights from de Data Sources was creating a Data Lakehouse Architecture Solution. 
     As the source of GDELT events was just updated daily, characterized a architecture just for a batch process. </p>
 
-#### BATCH
+#### BATCH PIPELINE
+
+![Batch Pipeline](docs/img/pipeline.png)
 
 <p>
 We've developed a Python application to handle batch processing of global events data sourced from the GDELT Project. To automate this process efficiently, we utilized Azure Data Factory (ADF), a cloud-based data integration service from Microsoft Azure, which gives us complete control over our data pipelines for seamless automation of ELT and ETL workflows. We set up a Data Lake Gen2 within our Storage Account, enabling hierarchical namespaces to organize the file structure. To optimize storage and performance, we converted the original CSV files into Parquet format and stored them in a container within the Storage Account.
@@ -141,27 +143,6 @@ Analyzing global events allows for a better understanding of the ever-changing g
 ##### 1. Risk and Opportunity Identification
 
 <p> By identifying patterns and trends, we can anticipate emerging risks and opportunities, enabling a more effective strategic response. </p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ### 5. TEAM 🇧🇷
