@@ -4,10 +4,9 @@
 ## CHALLENGE 
 <p> Your mission, should you choose to accept it, is to uncover critical insights from global events that allow for early intervention and strategic planning, ultimately helping businesses and organizations navigate complex and volatile environments.</p>
 
-<p> You will dive deep into the vast and dynamic dataset provided by the Global Database of Events, Language, and Tone 
+<p> You will dive deep into the vast and dynamic dataset provided by the Global Database of Events, Language, and Tone GDELT. This year, we're presenting two challenges, designed to test your data skills and creativity.</p>
 
-[GDELT](https://www.gdeltproject.org/).
-This year, we're presenting two challenges, designed to test your data skills and creativity.</p>
+[GDELT](https://www.gdeltproject.org/)
 
 <hr>
 
@@ -54,12 +53,13 @@ Goal: Provide early warning insights and predictions to aid in risk mitigation f
 ![Project Architecture](docs/img/datathon_architecture_2024.png)
 
 <hr>
-<p> The approach that Bifrost Analytics used to provide insights from de Data Sources was creating a Batch Architecture Solution, 
-    because the source of GDELT events was just updated daily, so characterizing a batch process. </p>
+<p> The approach that Bifrost Analytics used to provide insights from de Data Sources was creating a Data Lakehouse Architecture Solution. 
+    As the source of GDELT events was just updated daily, characterized a architecture just for a batch process. </p>
 
 #### BATCH
+
 <p>
-<b>BATCH:</b> We've developed a Python application to handle batch processing of global events data sourced from the GDELT Project. To automate this process efficiently, we utilized Azure Data Factory (ADF), a cloud-based data integration service from Microsoft Azure, which gives us complete control over our data pipelines for seamless automation of ELT and ETL workflows. We set up a Data Lake Gen2 within our Storage Account, enabling hierarchical namespaces to organize the file structure. To optimize storage and performance, we converted the original CSV files into Parquet format and stored them in a container within the Storage Account.
+We've developed a Python application to handle batch processing of global events data sourced from the GDELT Project. To automate this process efficiently, we utilized Azure Data Factory (ADF), a cloud-based data integration service from Microsoft Azure, which gives us complete control over our data pipelines for seamless automation of ELT and ETL workflows. We set up a Data Lake Gen2 within our Storage Account, enabling hierarchical namespaces to organize the file structure. To optimize storage and performance, we converted the original CSV files into Parquet format and stored them in a container within the Storage Account.
 
 We integrated Databricks with an Azure Storage Account, setting up a Data Lake Gen2 to handle our data storage needs. The Data Lakehouse architecture follows a layered approach to ensure data quality and efficient processing. Inside Databricks, we leverage Delta Lake, an open-source storage layer that brings ACID transactions and scalable metadata handling to Apache Spark - the distributed processing of data, ensuring high performance and scalability. We structured our data into Bronze, Silver and Gold Layers. While maintaining data quality throughout the entire process
 
@@ -100,6 +100,8 @@ This approach enabled us to provide Data Scientist and Data Analyst with access 
 
 
 ### 4. ANALYTICS: 
+
+
 
 
 ### 5. TEAM 🇧🇷
