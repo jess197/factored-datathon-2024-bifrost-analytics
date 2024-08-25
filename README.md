@@ -173,7 +173,7 @@ Analyzing global events allows for a better understanding of the ever-changing g
 
 
 ### 6. TECH STACK  
-<img src="./docs/img/azure.png" alt="azure" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/python.png" alt="python" style="vertical-align:top; margin:4px; height:40px; width:40px">
+<img src="./docs/img/azure.png" alt="azure" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/python.png" alt="python" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./logos/databricks.png" alt="databricks" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./logos/sql.png" alt="sql" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./logos/data-quality.png" alt="data-quality" style="vertical-align:top; margin:4px; height:40px; width:40px">
 
 
 
