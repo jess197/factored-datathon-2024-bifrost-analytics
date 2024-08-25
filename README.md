@@ -99,7 +99,67 @@ This approach enabled us to provide Data Scientist and Data Analyst with access 
 ### 3. DATA SCIENCE: 
 
 
-### 4. ANALYTICS: 
+### 4. DATA ANALYTICS: 
+
+#### Temporal and Geographic Analysis 
+
+![Temporal Geographic Analysis](docs/img/temporal_geographic_analysis.png)
+
+<hr>
+
+#### Actor 1 Analysis
+
+![Actor 1 Analysis](docs/img/actor1_analysis.png)
+
+<hr> 
+
+#### Analysisc of Actions and Impacts
+
+![Actor 1 Analysis](docs/img/analysis_of_actions_and_impacts.png)
+
+
+#### 4.1 Understanding the Scale of Global Events
+
+##### 1. Global Events Over Time
+
+<p> Historical analysis of global events provides a comprehensive view of their frequency, impact and evolution over time. </p>
+
+##### 2. Geographical Location
+
+<p> The geographic location of events is fundamental to understanding their contexts, regional influences and potential international impacts. </p>
+
+##### 3. Identifying Patterns and Trends
+
+<p> By analyzing temporal and geographic distribution, we can identify patterns and trends, revealing emerging scenarios and strategic opportunities.. </p>
+
+
+#### 4.2 Understanding the Global Environment
+
+Analyzing global events allows for a better understanding of the ever-changing global environment, providing valuable information for strategic decision-making
+
+
+##### 1. Risk and Opportunity Identification
+
+<p> By identifying patterns and trends, we can anticipate emerging risks and opportunities, enabling a more effective strategic response. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### 5. TEAM 🇧🇷
