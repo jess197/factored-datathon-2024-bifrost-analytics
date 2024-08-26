@@ -21,7 +21,7 @@ event_type_dict = {
     'Praise or endorse' : '051'
 }
 
-st.logo(os.environ['model_base_folder'] + '/bifrost-analytics-logo.png')
+st.image(os.environ['model_base_folder'] + '/bifrost-analytics-logo.png')
 
 st.write("Please select actor and event type to generate the news. Notice that the Actor 1 is always United States.")
 
