@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 from data.databricks import Databricks
 from data.news_generator import NewsGenerator
@@ -19,6 +20,8 @@ event_type_dict = {
     'Make statement, not specificed below' : '010',
     'Praise or endorse' : '051'
 }
+
+st.logo(os.environ['model_base_folder'] + '/bifrost-analytics-logo.png')
 
 st.write("Please select actor and event type to generate the news. Notice that the Actor 1 is always United States.")
 
