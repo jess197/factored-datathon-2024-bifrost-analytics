@@ -1,4 +1,4 @@
-scikit-learn==1.1.1
+scikit-learn
 pandas
 databricks
 databricks-connect
