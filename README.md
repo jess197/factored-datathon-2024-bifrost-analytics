@@ -53,8 +53,8 @@ Goal: Provide early warning insights and predictions to aid in risk mitigation f
 ![Project Architecture](docs/img/datathon_architecture_2024.png)
 
 <hr>
-<p> The approach that Bifrost Analytics used to provide insights from the data source was creating a Data Lakehouse Architecture Solution. 
-    As the source of GDELT events was just updated daily, characterized a architecture just for a batch process. </p>
+<p> The approach that Bifrost Analytics used to provide insights from the data source was creating a Data Lakehouse Architecture Solution.  </p>
+ <p>  The source of GDELT events was just updated daily, so it was developed a architecture just for a batch process. </p>
 
 #### BATCH PIPELINE
 
@@ -78,7 +78,9 @@ This approach enabled us to provide Data Scientist and Data Analyst with access 
  With [Soda](https://www.soda.io/) we could be able to deliver trust data. During the process we discovered some inconsistences throught this wonderful tool.
  ##### 1. Percentage of Duplicate news URL: 
  <p>
- Thought this warn check we created an incident and discovered that some URL were duplicated since the origin, but in the others fields the data was different, so it wasn't a duplicated value, but some news that included different types of Actors, the GlobalEventID was different, besides others fields. It was possible to discover that 14,8% of gdelt events was with the same link (almost 526k records).
+Through this warning check, we identified an incident where some URLs were duplicated from the source. However, upon further investigation, we found that while the URLs were the same, other fields contained different data. This indicated that the records were not exact duplicates. Instead, they represented different news events that involved various types of Actors. Additionally, the GlobalEventID and other fields differed, which confirmed that these were distinct events reported under the same URL.
+
+We discovered that 14.8% of GDELT events shared the same link, amounting to nearly 526,000 records.
 </p>
 
  ![Percentage of Duplicated URL](docs/img/percentage_duplicated_url.png)
