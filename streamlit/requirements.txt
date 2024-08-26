@@ -1,7 +1,6 @@
-streamlit
+scikit-learn==1.1.1
 pandas
 databricks
 databricks-connect
 databricks-sql-connector
 groq
-scikit-learn==1.1.1
