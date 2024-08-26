@@ -53,7 +53,7 @@ Goal: Provide early warning insights and predictions to aid in risk mitigation f
 ![Project Architecture](docs/img/datathon_architecture_2024.png)
 
 <hr>
-<p> The approach that Bifrost Analytics used to provide insights from de Data Sources was creating a Data Lakehouse Architecture Solution. 
+<p> The approach that Bifrost Analytics used to provide insights from the data source was creating a Data Lakehouse Architecture Solution. 
     As the source of GDELT events was just updated daily, characterized a architecture just for a batch process. </p>
 
 #### BATCH PIPELINE
