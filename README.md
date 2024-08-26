@@ -100,6 +100,63 @@ This approach enabled us to provide Data Scientist and Data Analyst with access 
 
 ### 3. DATA SCIENCE: 
 
+ #### Modeling 
+<p> The modeling part aims to predict the importance and impact of a news event in the next time unit. We treat news as a timeline of events, and the questions we want to answer with the modeling is:
+ What will be the next event? 
+How will it be?
+Given a timeline of events about some topic in economics like fees, our in politics like election, what is the likely outcome?
+We wanted to use both classical machine learning and Gen AI to address that.
+</p>
+
+ ![Pipeline](docs/img/pipeline_datascience.png)
+
+<p> We train the model with input at time T to predict time T+1.  The pipeline is:
+<br>
+● Data: The raw data about news events, including the text, date, source and importance metrics..
+<br>
+● Filtering of Actor1code: We decide to focus just on United States.
+<br>
+● Feature Engineering and Selection: This step transforms the data into a format that can be used by the model. We include features like the number of mentions, sources, and articles, as well as the Goldstein Class, Importance Metric (the sum of NumArticles, NumSources and NumMentions) and AvgTone.
+<br>
+● Model: The model uses the features at time T (present) to predict the next event (T+1), including the Goldstein Class, Importance Metric and  AvgTone.
+<br>
+● Metric Variables: The output of the model includes the predicted metric variables for the next time unit.
+<br>
+● LLM: This step integrates a large language model (LLM) to understand the context of the news event and predict the next event news based on the predicted metrics.
+<br>
+● Next News: The final output of the model is the predicted news event at time T+1.
+<br>
+This model can be used to help journalists and news organizations understand the impact of news events and predict the future trajectory of news stories.
+</p>
+<hr>
+
+#### 1. Evoluting the tool
+<p> 
+Some points we would like to have done if we had more time and others are just possible evolutions of the tool.
+
+##### 1.1 Points for improvement:
+● GridSearch or other mechanism to find the best model among many.
+<br>
+● Hyperparameter tuning
+<br>
+● A neural network as a model only, which would have 3 outputs and would be of the Bidirectional LSTM type, due to the temporal nature of the data.
+<br>
+● Handle high cardinality fetures better.
+</p>
+<br>
+
+##### 1.2 Evolution points:
+<p>
+● Relationship of events mapped via graph, both for modeling and analysis.
+<br>
+● Creation of RAG for each Actor1 x Actor2, so we would be able to consult the news history and create a new one with more context.
+<br>
+● LLM fine tuning to understand how metrics impact the news.
+<br>
+</p>
+
+<hr>
+
 
 ### 4. DATA ANALYTICS: 
 
@@ -144,6 +201,7 @@ Analyzing global events allows for a better understanding of the ever-changing g
 
 <p> By identifying patterns and trends, we can anticipate emerging risks and opportunities, enabling a more effective strategic response. </p>
 
+<hr>
 
 ### 5. TEAM 🇧🇷
  - Jessica Caroline Costa e Silva - Data Engineer | <b> [LinkedIn](https://www.linkedin.com/in/jessicaccostaesilva/) </b> | <b> [Github](https://github.com/jess197) </b> 
