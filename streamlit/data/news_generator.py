@@ -16,24 +16,24 @@ class NewsGenerator:
 
     def __init__(self):
         self.client = Groq(api_key=os.environ["groq_apy_key"])
-        with open(f'{os.environ["model_base_folder"]}\encoders.pkl', 'rb') as f:
+        with open(os.environ['model_base_folder'] + '/encoders.pkl', 'rb') as f:
             self.encoders = pickle.load(f)
-        with open(f'{os.environ["model_base_folder"]}\model_gd.pkl', 'rb') as f:
+        with open(os.environ['model_base_folder'] + '/model_gd.pkl', 'rb') as f:
             self.model_gd = pickle.load(f)
-        with open(f'{os.environ["model_base_folder"]}\model_avgtone.pkl', 'rb') as f:
+        with open(os.environ['model_base_folder'] + '/model_avgtone.pkl', 'rb') as f:
             self.model_avgtone = pickle.load(f)
-        with open(f'{os.environ["model_base_folder"]}\model_combined.pkl', 'rb') as f:
+        with open(os.environ['model_base_folder'] + '/model_combined.pkl', 'rb') as f:
             self.model_combined = pickle.load(f)
-        with open(f'{os.environ["model_base_folder"]}\columns_to_filter.pkl', 'rb') as f:
+        with open(os.environ['model_base_folder'] + '/columns_to_filter.pkl', 'rb') as f:
             cols_to_filter = pickle.load(f)
             self.cols_to_drop = cols_to_filter['cols_to_drop']
             self.low_cardinality_cols = cols_to_filter['low_cardinality_cols']
             self.high_cardinality_cols = cols_to_filter['high_cardinality_cols']
-        with open(f'{os.environ["model_base_folder"]}\\features_gd.pkl', 'rb') as f:
+        with open(os.environ['model_base_folder'] + '/features_gd.pkl', 'rb') as f:
             self.features_gd = pickle.load(f)
-        with open(f'{os.environ["model_base_folder"]}\\features_avgtone.pkl', 'rb') as f:
+        with open(os.environ['model_base_folder'] + '/features_avgtone.pkl', 'rb') as f:
             self.features_avgtone = pickle.load(f)
-        with open(f'{os.environ["model_base_folder"]}\\features_combined.pkl', 'rb') as f:
+        with open(os.environ['model_base_folder'] + '/features_combined.pkl', 'rb') as f:
             self.features_combined = pickle.load(f)
 
     def __generate_next_news(self, goldstein, avgtone, combinedmetric, source, goldstein_next, avgtone_next, combinedmetric_next):
