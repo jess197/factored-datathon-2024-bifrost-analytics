@@ -25,6 +25,8 @@ st.image(os.environ['model_base_folder'] + '/bifrost-analytics-logo.png')
 
 st.write("Please select actor and event type to generate the news. Notice that the Actor 1 is always United States.")
 
+st.write("* Please notice that the first attempt of generating the news may take a while, because of the Databrick's Cluster inicialization")
+
 actor2 = st.selectbox(
     "Select the Actor 2",
     ('UNITED STATES', 'ISRAEL', 'UKRAINE', 'RUSSIA', 'CHINA', 'PALESTINE'),
