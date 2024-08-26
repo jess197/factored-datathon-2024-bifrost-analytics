@@ -231,7 +231,7 @@ These improvement and evolution points represent a robust path to increasing the
 
 <hr>
 
-#### Streamlit Apllication 
+#### Streamlit App 
 
 ![Streamlit App](docs/img/streamlit-app.png)
 
