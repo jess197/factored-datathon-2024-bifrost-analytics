@@ -157,6 +157,12 @@ Some points we would like to have done if we had more time and others are just p
 
 <hr>
 
+#### Streamlit Apllication 
+
+![Streamlit App](docs/img/streamlit_app.png)
+
+
+<hr>
 
 ### 4. DATA ANALYTICS: 
 
@@ -212,7 +218,7 @@ Analyzing global events allows for a better understanding of the ever-changing g
 
 
 ### 6. TECH STACK  
-<img src="./docs/img/azure.png" alt="azure" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/python.png" alt="python" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/databricks.png" alt="databricks" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/sql.png" alt="sql" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/data-quality.png" alt="data-quality" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/apache_spark.png" alt="spark" style="vertical-align:top; margin:4px; height:40px; width:40px">
+<img src="./docs/img/azure.png" alt="azure" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/python.png" alt="python" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/databricks.png" alt="databricks" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/sql.png" alt="sql" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/data-quality.png" alt="data-quality" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/apache_spark.png" alt="spark" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/streamlit.png" alt="streamlit" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/powerbi.png" alt="powerbi" style="vertical-align:top; margin:4px; height:40px; width:40px"><img src="./docs/img/deltalake-logo.png" alt="deltalake" style="vertical-align:top; margin:4px; height:40px; width:40px">
 
 
 
