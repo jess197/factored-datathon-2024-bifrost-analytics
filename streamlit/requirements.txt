@@ -1,0 +1,8 @@
+streamlit
+pandas
+databricks
+databricks-connect
+databricks-sql-connector
+groq
+sklearn
+scikit-learn==1.1.1
